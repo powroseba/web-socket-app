@@ -27,7 +27,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         // Set up simplified security settings requiring all requests to be authenticated
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/")
+                .antMatchers("/", "/index.html", "/webjars/**", "/js/**")
                 .permitAll()
                 .anyRequest()
                 .fullyAuthenticated();
@@ -54,22 +54,22 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder(10);
     }
-//
-//    @Bean
-//    public WebMvcConfigurer corsConfigurer() {
-//        return new WebMvcConfigurer() {
-//            @Override
-//            public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/**")
-//                        .allowedOriginPatterns("*")
-//                        .allowedOrigins("*")
-//                        .allowedHeaders("*")
-//                        .allowedMethods("*")
-//                        .maxAge(3600)
-//                        .allowCredentials(false)
-//                        .exposedHeaders("*");
-//            }
-//        };
-//    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOriginPatterns("*")
+                        .allowedOrigins("*")
+                        .allowedHeaders("*")
+                        .allowedMethods("*")
+                        .maxAge(3600)
+                        .allowCredentials(true)
+                        .exposedHeaders("*");
+            }
+        };
+    }
 
 }

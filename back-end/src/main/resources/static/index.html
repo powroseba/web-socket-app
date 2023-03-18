@@ -12,9 +12,7 @@
     Enter message to send
   </label>
   <input type="text" id="message-input">
-  <button onclick="sendMessage()">
-    send
-  </button>
+  <button type="button" onclick="sendMessage()">send</button>
 
   <ul id="message-list">
 
@@ -52,10 +50,18 @@
 
       let input = document.getElementById("message-input");
       let message = input.value;
+      input.value = ""
 
       client.send('/app/chat', {}, JSON.stringify({message: message}));
-
     }
+
+    document.getElementById("message-input")
+      .addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.key === 'Enter') {
+          sendMessage()
+        }
+      });
 
   </script>
 

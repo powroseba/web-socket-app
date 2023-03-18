@@ -1,7 +1,6 @@
 package me.john.amiscaray.springwebsocketdemo.config;
 
 import me.john.amiscaray.springwebsocketdemo.service.AuthChannelInterceptor;
-import me.john.amiscaray.springwebsocketdemo.service.AuthHandshakeHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
@@ -16,8 +15,6 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Autowired
     private AuthChannelInterceptor channelInterceptor;
-    @Autowired
-    private AuthHandshakeHandler authHandshakeHandler;
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
@@ -33,23 +30,16 @@ public class WebSocketConfiguration implements WebSocketMessageBrokerConfigurer 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // Registers the endpoint where the handshake will take place
-        registry.addEndpoint("/stomp")
-//                .setHandshakeHandler(authHandshakeHandler)
-                .setAllowedOriginPatterns("*")
-//                .setAllowedOrigins("*")
-                // Allow the origin http://localhost:63343 to send messages to us. (Base url of the client)
-//                .setAllowedOrigins("http://localhost:63342")
-                // Enable SockJS fallback options
-                .withSockJS();
-
+        registry.addEndpoint("/stomp").setAllowedOriginPatterns("*");
+        registry.addEndpoint("/stomp").setAllowedOriginPatterns("*").withSockJS();
     }
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-
         // Add our interceptor for authentication/authorization
         registration.interceptors(channelInterceptor);
-
     }
+
+
 
 
 }
