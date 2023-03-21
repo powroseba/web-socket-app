@@ -1,0 +1,5 @@
+me/john/amiscaray/springwebsocketdemo/entities/User.class
+me/john/amiscaray/springwebsocketdemo/dao/UserRepo.class
+me/john/amiscaray/springwebsocketdemo/SpringWebsocketDemoApplication.class
+me/john/amiscaray/springwebsocketdemo/dtos/UserDto.class
+me/john/amiscaray/springwebsocketdemo/dtos/MessageDto.class

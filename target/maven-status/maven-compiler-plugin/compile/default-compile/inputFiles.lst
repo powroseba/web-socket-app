@@ -1,0 +1,17 @@
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/service/UserService.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/service/AuthChannelInterceptor.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/SpringWebsocketDemoApplication.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/dao/UserRepo.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/service/WebSocketAuthenticatorService.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/config/AppSecurityConfig.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/dtos/UserDto.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/config/WebSocketSecurityConfig.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/dao/UserRepositoryAdapter.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/config/CorsFilter.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/service/AppUserDetailsService.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/entities/User.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/dtos/AppUserDetails.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/controllers/MessageController.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/config/WebSocketConfiguration.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/dtos/MessageDto.java
+/Users/sebastian.powroznik/Projects/websocket/src/main/java/me/john/amiscaray/springwebsocketdemo/controllers/IndexViewController.java
