@@ -14,8 +14,10 @@
     <name>spring-websocket-demo</name>
     <description>Demo project for Spring Boot WebSockets</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
+    <packaging>jar</packaging>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -42,6 +44,7 @@
     </dependencies>
 
     <build>
+        <finalName>web-socket-app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
