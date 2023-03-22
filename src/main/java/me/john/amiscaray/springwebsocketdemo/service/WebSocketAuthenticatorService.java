@@ -1,7 +1,5 @@
 package me.john.amiscaray.springwebsocketdemo.service;
 
-import me.john.amiscaray.springwebsocketdemo.entities.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,14 +13,13 @@ import java.util.Collections;
 @Service
 public class WebSocketAuthenticatorService {
 
-    @Autowired
-    private UserService userService;
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authManager;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private AuthenticationManager authManager;
+    public WebSocketAuthenticatorService(PasswordEncoder passwordEncoder, AuthenticationManager authManager) {
+        this.passwordEncoder = passwordEncoder;
+        this.authManager = authManager;
+    }
 
     public UsernamePasswordAuthenticationToken getAuthenticatedOrFail(String username, String password) throws AuthenticationException {
 
@@ -33,16 +30,10 @@ public class WebSocketAuthenticatorService {
         if (password == null || password.trim().isEmpty()) {
             throw new AuthenticationCredentialsNotFoundException("Password was null or empty.");
         }
-        // Check that the user with that username exists
-        User user = userService.findUserByUsername(username);
-        if(user == null){
-            throw new AuthenticationCredentialsNotFoundException("User not found");
-        }
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 username,
                 password,
-                Collections.singletonList(new SimpleGrantedAuthority(user.getAuthority()))
-
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
         );
 
         // verify that the credentials are valid

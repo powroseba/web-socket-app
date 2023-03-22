@@ -1,7 +1,6 @@
 package me.john.amiscaray.springwebsocketdemo.config;
 
-import me.john.amiscaray.springwebsocketdemo.service.AppUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import me.john.amiscaray.springwebsocketdemo.dtos.AppUserDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,9 +17,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebSecurity
 public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private AppUserDetailsService userDetailsService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,7 +37,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(username -> new AppUserDetails(username, passwordEncoder().encode("janekPassword"))).passwordEncoder(passwordEncoder());
     }
 
     // Create an AuthenticationManager bean to Authenticate users in the ChannelInterceptor
@@ -51,7 +47,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 

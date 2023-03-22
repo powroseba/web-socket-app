@@ -1,6 +1,5 @@
 package me.john.amiscaray.springwebsocketdemo.dtos;
 
-import me.john.amiscaray.springwebsocketdemo.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,25 +9,27 @@ import java.util.Collections;
 
 public class AppUserDetails implements UserDetails {
 
-    private final User user;
+    private final String username;
+    private final String password;
 
-    public AppUserDetails(User user){
-        this.user = user;
+    public AppUserDetails(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(user.getAuthority()));
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return user.getUsername();
+        return username;
     }
 
     @Override
