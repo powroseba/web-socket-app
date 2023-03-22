@@ -18,21 +18,19 @@
 
   </ul>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.js"
-          integrity="sha512-lyIq9fRcCeSCXhp41XC/250UBmypAHV8KW+AhLcSEIksWHBfhzub6XXwDe67wTpOG8zrO2NAU/TYmEaCW+aQSg=="
-          crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"
           integrity="sha512-iKDtgDyTHjAitUDdLljGhenhPwrbBfqTKWO1mkhSFH3A7blITC9MhYon6SjnMhp4o0rADGw9yAC6EW4t5a4K3g=="
           crossorigin="anonymous"></script>
   <script>
-    // Try to set up WebSocket connection with the handshake at "http://localhost:8080/stomp"
-    let sock = new SockJS("http://localhost:8089/stomp");
+    let webSocketUrl = "wss://web-socket-app-production.up.railway.app/stomp"
+    let sock = new WebSocket(webSocketUrl);
     // Create a new StompClient object with the WebSocket endpoint
-    let client = Stomp.over(sock);
+    let client = Stomp.client(webSocketUrl);
     /*
      Start the STOMP communications, provide a callback for when the CONNECT frame arrives. Provide the username and password
      in the headers
      */
+    sock.onopen = () => console.log('open web-socket');
     client.connect({'username': 'janek', 'password': 'janekPassword'}, frame => {
       // Subscribe to "/topic/messages". Whenever a message arrives add the text in a list-item element in the unordered list.
       client.subscribe("/topic/messages", payload => {
