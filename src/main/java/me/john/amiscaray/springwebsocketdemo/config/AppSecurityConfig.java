@@ -23,7 +23,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         // Set up simplified security settings requiring all requests to be authenticated
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/index.html", "/webjars/**", "/js/**")
+                .antMatchers("/", "/status", "/index.html", "/webjars/**", "/js/**")
                 .permitAll()
                 .anyRequest()
                 .fullyAuthenticated();
