@@ -58,7 +58,7 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedOriginPatterns("*")
-                        .allowedOrigins("*")
+//                         .allowedOrigins("*")
                         .allowedHeaders("*")
                         .allowedMethods("*")
                         .maxAge(3600)
