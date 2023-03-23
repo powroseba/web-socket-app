@@ -37,7 +37,13 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(username -> new AppUserDetails(username, passwordEncoder().encode("janekPassword"))).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(username -> {
+            if (username.equals("janek")) {
+                return new AppUserDetails(username, passwordEncoder().encode("janekPassword"));
+            } else {
+                throw new UsernameNotFoundException("User " + username + " not found");
+            }
+        });
     }
 
     // Create an AuthenticationManager bean to Authenticate users in the ChannelInterceptor
